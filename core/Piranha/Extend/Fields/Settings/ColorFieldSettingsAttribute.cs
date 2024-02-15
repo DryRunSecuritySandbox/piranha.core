@@ -2,30 +2,27 @@
  * Copyright (c) .NET Foundation and Contributors
  *
  * This software may be modified and distributed under the terms
- * of the MIT license.  See the LICENSE file for details.
+ * of the MIT license. See the LICENSE file for details.
  *
  * https://github.com/piranhacms/piranha.core
  *
  */
 
-using System;
+namespace Piranha.Extend.Fields.Settings;
 
-namespace Piranha.Extend.Fields.Settings
+/// <summary>
+/// Base class for field settings.
+/// </summary>
+[AttributeUsage(AttributeTargets.Property)]
+public class ColorFieldSettingsAttribute : FieldSettingsAttribute
 {
     /// <summary>
-    /// Base class for field settings.
+    /// Gets/sets if disallowing manual input.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property)]
-    public class ColorFieldSettingsAttribute : FieldSettingsAttribute
-    {
-        /// <summary>
-        /// Gets/sets if disallowing manual input.
-        /// </summary>
-        public bool DisallowInput { get; set; }
+    public bool DisallowInput { get; set; }
 
-        /// <summary>
-        /// Gets/sets the optional default value for field.
-        /// </summary>
-        public string DefaultValue { get; set; }
-    }
+    /// <summary>
+    /// Gets/sets the optional default value for field.
+    /// </summary>
+    public string DefaultValue { get; set; }
 }

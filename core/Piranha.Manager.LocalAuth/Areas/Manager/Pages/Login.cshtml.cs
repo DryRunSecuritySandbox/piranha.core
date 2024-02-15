@@ -2,9 +2,9 @@
  * Copyright (c) .NET Foundation and Contributors
  *
  * This software may be modified and distributed under the terms
- * of the MIT license.  See the LICENSE file for details.
+ * of the MIT license. See the LICENSE file for details.
  *
- * http://github.com/piranhacms/piranha.core
+ * https://github.com/piranhacms/piranha.core
  *
  */
 
@@ -95,7 +95,7 @@ namespace Piranha.Manager.LocalAuth.Areas.Manager.Pages
         {
             await _service.SignOut(HttpContext);
 
-            if (!ModelState.IsValid || !await _service.SignIn(HttpContext, Input.Username, Input.Password))
+            if (!ModelState.IsValid || (await _service.SignIn(HttpContext, Input.Username, Input.Password)) != LoginResult.Succeeded)
             {
                 ModelState.Clear();
                 ModelState.AddModelError(string.Empty, _localizer.General["Username and/or password are incorrect."].Value);
@@ -104,10 +104,9 @@ namespace Piranha.Manager.LocalAuth.Areas.Manager.Pages
 
             if (!string.IsNullOrEmpty(returnUrl))
             {
-                return LocalRedirect(returnUrl);
+                return LocalRedirect($"~/manager/login/auth?returnUrl={ returnUrl }");
             }
-
-            return new RedirectToPageResult("Index");
+            return LocalRedirect("~/manager/login/auth");
         }
     }
 }

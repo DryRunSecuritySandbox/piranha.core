@@ -11,7 +11,6 @@ piranha.siteedit = new Vue({
         languageId: null,
         title: null,
         internalId: null,
-        culture: null,
         description: null,
         logo: {
             id: null,
@@ -44,7 +43,6 @@ piranha.siteedit = new Vue({
                     self.languageId = result.languageId;
                     self.title = result.title;
                     self.internalId = result.internalId;
-                    self.culture = result.culture;
                     self.description = result.description;
                     self.logo = result.logo;
                     self.hostnames = result.hostnames;
@@ -57,7 +55,11 @@ piranha.siteedit = new Vue({
             fetch(piranha.baseUrl + "manager/api/site/content/" + id)
                 .then(function (response) { return response.json(); })
                 .then(function (result) {
-                    self.regions = result.regions;
+                    if (result.status !== 404) {
+                        self.regions = result.regions;
+                    } else {
+                        self.regions = [];
+                    }
                 })
                 .catch(function (error) { console.log("error:", error ); });
         },
@@ -76,7 +78,6 @@ piranha.siteedit = new Vue({
                 languageId: this.languageId,
                 title: this.title,
                 internalId: this.internalId,
-                culture: this.culture,
                 description: this.description,
                 logo: this.logo,
                 hostnames: this.hostnames,
@@ -85,9 +86,7 @@ piranha.siteedit = new Vue({
 
             fetch(piranha.baseUrl + "manager/api/site/save", {
                 method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: piranha.utils.antiForgeryHeaders(),
                 body: JSON.stringify(model)
             })
             .then(function (response) { return response.json(); })
@@ -104,9 +103,7 @@ piranha.siteedit = new Vue({
 
                         fetch(piranha.baseUrl + "manager/api/site/savecontent", {
                             method: "post",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
+                            headers: piranha.utils.antiForgeryHeaders(),
                             body: JSON.stringify(content)
                         })
                         .then(function (contentResponse) { return contentResponse.json(); })
@@ -121,13 +118,22 @@ piranha.siteedit = new Vue({
                                     self.callback = null;
                                 }
                             } else {
-                                piranha.notifications.push(contentResult);
+                                if (result.status !== 400) {
+                                    // Push status to notification hub
+                                    piranha.notifications.push(contentResult);
+                                } else {
+                                    // Unauthorized request
+                                    piranha.notifications.unauthorized();
+                                }
                             }
                         })
                         .catch(function (error) {
                             console.log("error:", error );
                         });
                     } else {
+                        // Push status to notification hub
+                        piranha.notifications.push(result);
+
                         $("#siteedit").modal("hide");
                         if (self.callback)
                         {
@@ -180,7 +186,6 @@ piranha.siteedit = new Vue({
                     self.typeId = result.typeId;
                     self.title = result.title;
                     self.internalId = result.internalId;
-                    self.culture = result.culture;
                     self.description = result.description;
                     self.hostnames = result.hostnames;
                     self.isDefault = result.isDefault;
@@ -214,26 +219,42 @@ piranha.siteedit = new Vue({
 
             var self = this;
 
-            fetch(piranha.baseUrl + "manager/api/site/delete/" + self.id)
-                .then(function (response) { return response.json(); })
-                .then(function (result) {
-                    piranha.notifications.push(result);
+            fetch(piranha.baseUrl + "manager/api/site/delete", {
+                method: "delete",
+                headers: piranha.utils.antiForgeryHeaders(),
+                body: JSON.stringify(self.id)
+            })
+            .then(function (response) { return response.json(); })
+            .then(function (result) {
+                piranha.notifications.push(result);
 
-                    if (result.type === "success") {
-                        $("#siteedit").modal("hide");
+                if (result.type === "success") {
+                    $("#siteedit").modal("hide");
 
-                        if (self.callback)
-                        {
-                            self.callback();
-                            self.callback = null;
-                        }
+                    if (self.callback)
+                    {
+                        self.callback();
+                        self.callback = null;
                     }
-                })
-                .catch(function (error) { console.log("error:", error ); });
+                }
+            })
+            .catch(function (error) { console.log("error:", error ); });
         },
         selectRegion: function (region) {
             this.selectedRegion = region;
         },
+        refreshLanguageList() {
+            fetch(piranha.baseUrl + "manager/api/language")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    self.languages = result.items;
+                })
+                .catch(function (error) {
+                    console.log("error:", error);
+                });
+        }
     },
     updated: function () {
         this.loading = false;

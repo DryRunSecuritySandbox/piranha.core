@@ -1,11 +1,15 @@
 <Project>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+  </PropertyGroup>
+
   <PropertyGroup Label="Package information">
-    <Version>9.1.0</Version>
+    <Version>11.0.0</Version>
     <Authors>Piranha CMS</Authors>
     <Company>Piranha CMS</Company>
     <Copyright>Copyright (c) .NET Foundation and Contributors</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>cms mvc aspnetcore netstandard</PackageTags>
+    <PackageTags>cms mvc razorpages aspnetcore netstandard</PackageTags>
     <PackageIcon>piranha.png</PackageIcon>
     <PackageProjectUrl>https://github.com/piranhacms/piranha.core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/piranhacms/piranha.core</RepositoryUrl>

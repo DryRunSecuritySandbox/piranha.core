@@ -2,24 +2,21 @@
  * Copyright (c) .NET Foundation and Contributors
  *
  * This software may be modified and distributed under the terms
- * of the MIT license.  See the LICENSE file for details.
+ * of the MIT license. See the LICENSE file for details.
  *
- * http://github.com/piranhacms/piranha.core
+ * https://github.com/piranhacms/piranha.core
  *
  */
 
-using System.Threading.Tasks;
+namespace Piranha.AspNetCore.Identity;
 
-namespace Piranha.AspNetCore.Identity
+/// <summary>
+/// Interface for creating a data seed for the identity module.
+/// </summary>
+public interface IIdentitySeed
 {
     /// <summary>
-    /// Interface for creating a data seed for the identity module.
+    /// Create the seed data.
     /// </summary>
-    public interface IIdentitySeed
-    {
-        /// <summary>
-        /// Create the seed data.
-        /// </summary>
-        Task CreateAsync();
-    }
+    Task CreateAsync();
 }

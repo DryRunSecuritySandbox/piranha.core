@@ -2,16 +2,19 @@
  * Copyright (c) .NET Foundation and Contributors
  *
  * This software may be modified and distributed under the terms
- * of the MIT license.  See the LICENSE file for details.
+ * of the MIT license. See the LICENSE file for details.
  *
- * http://github.com/piranhacms/piranha
+ * https://github.com/piranhacms/piranha.core
  *
  */
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Piranha.AspNetCore.Identity.SQLite
+namespace Piranha.AspNetCore.Identity.SQLite;
+
+public class IdentitySQLiteDb : Db<IdentitySQLiteDb>
 {
+<<<<<<< HEAD
     public class IdentitySQLiteDb : EntityFrameworkCore.Db<IdentitySQLiteDb>
     {
         /// <summary>
@@ -21,3 +24,11 @@ namespace Piranha.AspNetCore.Identity.SQLite
         public IdentitySQLiteDb(DbContextOptions<IdentitySQLiteDb> options) : base(options) { }
     }
 }
+=======
+    /// <summary>
+    /// Default constructor.
+    /// </summary>
+    /// <param name="options">Configuration options</param>
+    public IdentitySQLiteDb(DbContextOptions<IdentitySQLiteDb> options) : base(options) { }
+}
+>>>>>>> master

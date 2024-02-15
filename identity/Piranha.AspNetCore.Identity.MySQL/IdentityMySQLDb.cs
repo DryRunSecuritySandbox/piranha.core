@@ -3,15 +3,18 @@
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
- * 
+ *
  * https://github.com/piranhacms/piranha.core.mysql
- * 
+ *
  */
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Piranha.AspNetCore.Identity.MySQL
+namespace Piranha.AspNetCore.Identity.MySQL;
+
+public class IdentityMySQLDb : Identity.Db<IdentityMySQLDb>
 {
+<<<<<<< HEAD
     public class IdentityMySQLDb : EntityFrameworkCore.Db<IdentityMySQLDb> 
     { 
         /// <summary>
@@ -21,3 +24,11 @@ namespace Piranha.AspNetCore.Identity.MySQL
         public IdentityMySQLDb(DbContextOptions<IdentityMySQLDb> options) : base(options) { }
     }
 }
+=======
+    /// <summary>
+    /// Default constructor.
+    /// </summary>
+    /// <param name="options">Configuration options</param>
+    public IdentityMySQLDb(DbContextOptions<IdentityMySQLDb> options) : base(options) { }
+}
+>>>>>>> master

@@ -131,6 +131,16 @@ piranha.contentedit = new Vue({
                     icon: null,
                 };
             }
+
+            // Select first applicable setting
+            if ((this.usePrimaryImage || this.useExcerpt) && (this.useBlocks || this.contentRegions.length > 0))
+            {
+                this.selectedSetting = "uid-settings";
+            }
+            else if (this.settingRegions.length > 0)
+            {
+                this.selectedSetting = this.settingRegions[0].meta.uid;
+            }
         },
         load: function (id, languageId) {
             var self = this;
@@ -195,9 +205,7 @@ piranha.contentedit = new Vue({
 
             fetch(route, {
                 method: "post",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: piranha.utils.antiForgeryHeaders(),
                 body: JSON.stringify(model)
             })
             .then(function (response) { return response.json(); })
@@ -233,7 +241,11 @@ piranha.contentedit = new Vue({
                 onConfirm: function () {
                     var groupId = self.groupId;
 
-                    fetch(piranha.baseUrl + "manager/api/content/delete/" + self.id)
+                    fetch(piranha.baseUrl + "manager/api/content/delete", {
+                        method: "delete",
+                        headers: piranha.utils.antiForgeryHeaders(),
+                        body: JSON.stringify(self.id)
+                    })
                     .then(function (response) { return response.json(); })
                     .then(function (result) {
                         piranha.notifications.push(result);
