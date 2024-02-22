@@ -8,7 +8,12 @@
  *
  */
 
+<<<<<<< HEAD
+using System;
+using System.Collections.Generic;
+=======
 namespace Piranha.AspNetCore.Identity.Models;
+>>>>>>> master
 
 public class UserListModel
 {
@@ -16,6 +21,19 @@ public class UserListModel
 
     public static UserListModel Get(IDb db)
     {
+<<<<<<< HEAD
+        public IList<ListItem> Users { get; set; } = new List<ListItem>();
+
+        public class ListItem
+        {
+            public Guid Id { get; set; }
+            public string UserName { get; set; }
+            public string Email { get; set; }
+            public IList<string> Roles { get; set; } = new List<string>();
+
+            public string GravatarUrl { get; set; }
+        }
+=======
         var model = new UserListModel
         {
             Users = db.Users
@@ -49,6 +67,7 @@ public class UserListModel
         }
 
         return model;
+>>>>>>> master
     }
 
     public class ListItem

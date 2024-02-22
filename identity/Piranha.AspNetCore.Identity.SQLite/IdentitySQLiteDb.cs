@@ -14,9 +14,21 @@ namespace Piranha.AspNetCore.Identity.SQLite;
 
 public class IdentitySQLiteDb : Db<IdentitySQLiteDb>
 {
+<<<<<<< HEAD
+    public class IdentitySQLiteDb : EntityFrameworkCore.Db<IdentitySQLiteDb>
+    {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="options">Configuration options</param>
+        public IdentitySQLiteDb(DbContextOptions<IdentitySQLiteDb> options) : base(options) { }
+    }
+}
+=======
     /// <summary>
     /// Default constructor.
     /// </summary>
     /// <param name="options">Configuration options</param>
     public IdentitySQLiteDb(DbContextOptions<IdentitySQLiteDb> options) : base(options) { }
 }
+>>>>>>> master

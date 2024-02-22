@@ -14,9 +14,20 @@ namespace Piranha.AspNetCore.Identity.PostgreSQL;
 
 public class IdentityPostgreSQLDb : Db<IdentityPostgreSQLDb>
 {
+<<<<<<< HEAD
+    public class IdentityPostgreSQLDb : EntityFrameworkCore.Db<IdentityPostgreSQLDb>
+    { 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="options">Configuration options</param>
+        public IdentityPostgreSQLDb(DbContextOptions<IdentityPostgreSQLDb> options) : base(options) { }
+    }
+=======
     /// <summary>
     /// Default constructor.
     /// </summary>
     /// <param name="options">Configuration options</param>
     public IdentityPostgreSQLDb(DbContextOptions<IdentityPostgreSQLDb> options) : base(options) { }
+>>>>>>> master
 }

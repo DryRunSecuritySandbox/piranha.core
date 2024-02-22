@@ -35,6 +35,35 @@ public class DefaultIdentitySeed : IIdentitySeed
     /// <param name="userManager">The current UserManager</param>
     public DefaultIdentitySeed(IDb db, UserManager<User> userManager)
     {
+<<<<<<< HEAD
+        /// <summary>
+        /// The private user manager.
+        /// </summary>
+        private readonly UserManager<User> _userManager;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="userManager">The current UserManager</param>
+        public DefaultIdentitySeed(UserManager<User> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        /// <summary>
+        /// Create the seed data.
+        /// </summary>
+        public async Task CreateAsync()
+        {
+            if (!_userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@piranhacms.org"
+                };
+                var createResult = await _userManager.CreateAsync(user, "password");
+=======
         _db = db;
         _userManager = userManager;
     }
@@ -53,6 +82,7 @@ public class DefaultIdentitySeed : IIdentitySeed
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var createResult = await _userManager.CreateAsync(user, "password");
+>>>>>>> master
 
             if (createResult.Succeeded)
             {

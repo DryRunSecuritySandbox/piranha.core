@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Piranha.AspNetCore.Identity.Data;
 
+<<<<<<< HEAD:identity/Piranha.AspNetCore.Identity.EntityFrameworkCore/Db.cs
+namespace Piranha.AspNetCore.Identity.EntityFrameworkCore
+=======
 namespace Piranha.AspNetCore.Identity;
 
 public abstract class Db<T> :
@@ -24,6 +27,7 @@ public abstract class Db<T> :
         IdentityUserToken<Guid>>,
     IDb
     where T : Db<T>
+>>>>>>> master:identity/Piranha.AspNetCore.Identity/Db.cs
 {
     /// <summary>
     ///     Gets/sets whether the db context as been initialized. This

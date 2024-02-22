@@ -14,9 +14,21 @@ namespace Piranha.AspNetCore.Identity.MySQL;
 
 public class IdentityMySQLDb : Identity.Db<IdentityMySQLDb>
 {
+<<<<<<< HEAD
+    public class IdentityMySQLDb : EntityFrameworkCore.Db<IdentityMySQLDb> 
+    { 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="options">Configuration options</param>
+        public IdentityMySQLDb(DbContextOptions<IdentityMySQLDb> options) : base(options) { }
+    }
+}
+=======
     /// <summary>
     /// Default constructor.
     /// </summary>
     /// <param name="options">Configuration options</param>
     public IdentityMySQLDb(DbContextOptions<IdentityMySQLDb> options) : base(options) { }
 }
+>>>>>>> master

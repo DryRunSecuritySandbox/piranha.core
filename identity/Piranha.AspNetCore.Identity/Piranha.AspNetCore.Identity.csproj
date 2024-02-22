@@ -11,10 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.6" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
+=======
     <ProjectReference Include="..\..\core\Piranha\Piranha.csproj" />
+>>>>>>> master
     <ProjectReference Include="..\..\core\Piranha.Manager\Piranha.Manager.csproj" />
     <ProjectReference Include="..\..\core\Piranha.Manager.LocalAuth\Piranha.Manager.LocalAuth.csproj" />
     <ProjectReference Include="..\..\core\Piranha.Manager.Localization\Piranha.Manager.Localization.csproj" />
+    <ProjectReference Include="..\..\data\Piranha.Data.EF\Piranha.Data.EF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -14,7 +14,23 @@ public class RoleListModel
 {
     public RoleListModel()
     {
+<<<<<<< HEAD
+        public RoleListModel()
+        {
+            Roles = new List<ListItem>();
+        }
+
+        public IList<ListItem> Roles { get; set; }
+
+        public class ListItem
+        {
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public int UserCount { get; set; }
+        }
+=======
         Roles = new List<ListItem>();
+>>>>>>> master
     }
 
     public IList<ListItem> Roles { get; set; }
