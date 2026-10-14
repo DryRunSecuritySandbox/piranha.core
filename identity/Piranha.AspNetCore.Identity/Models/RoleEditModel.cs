@@ -8,7 +8,11 @@
  *
  */
 
+<<<<<<< HEAD
+using System.Collections.Generic;
+=======
 using Microsoft.AspNetCore.Identity;
+>>>>>>> master
 using Piranha.AspNetCore.Identity.Data;
 
 namespace Piranha.AspNetCore.Identity.Models;
@@ -17,6 +21,16 @@ public class RoleEditModel
 {
     public RoleEditModel()
     {
+<<<<<<< HEAD
+        public RoleEditModel()
+        {
+            SelectedClaims = new List<string>();
+        }
+
+        public Role Role { get; set; }
+        public IList<string> SelectedClaims { get; set; }
+    }
+=======
         SelectedClaims = new List<string>();
     }
 
@@ -106,4 +120,5 @@ public class RoleEditModel
 
         return true;
     }
+>>>>>>> master
 }

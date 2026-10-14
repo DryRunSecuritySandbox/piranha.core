@@ -12,9 +12,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Piranha.AspNetCore.Identity.Data;
 
+<<<<<<< HEAD:identity/Piranha.AspNetCore.Identity.EntityFrameworkCore/IDb.cs
+namespace Piranha.AspNetCore.Identity.EntityFrameworkCore
+=======
 namespace Piranha.AspNetCore.Identity;
 
 public interface IDb
+>>>>>>> master:identity/Piranha.AspNetCore.Identity/IDb.cs
 {
     /// <summary>
     /// Gets/sets the users set.

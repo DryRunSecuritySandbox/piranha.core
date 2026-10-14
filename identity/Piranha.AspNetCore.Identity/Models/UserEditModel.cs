@@ -8,6 +8,20 @@
  *
  */
 
+<<<<<<< HEAD
+using System.Collections.Generic;
+using Piranha.AspNetCore.Identity.Data;
+
+namespace Piranha.AspNetCore.Identity.Models
+{
+    public class UserEditModel
+    {
+        public User User { get; set; }
+        public IList<Role> Roles { get; set; } = new List<Role>();
+        public IList<string> SelectedRoles { get; set; } = new List<string>();
+        public string Password { get; set; }
+        public string PasswordConfirm { get; set; }
+=======
 using Microsoft.AspNetCore.Identity;
 using Piranha.AspNetCore.Identity.Data;
 
@@ -121,5 +135,6 @@ public class UserEditModel
         }
 
         return result;
+>>>>>>> master
     }
 }
